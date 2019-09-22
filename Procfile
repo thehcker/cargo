@@ -1,0 +1,1 @@
+web: gunicorn Luqman.wsgi --log-file -
