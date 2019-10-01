@@ -12,3 +12,8 @@ def extra(request):
 	context = {}
 	template = 'extra.html'
 	return render(request, template, context)
+
+def hom(request):
+	context = {}
+	template = 'hom.html'
+	return render(request, template, context)
