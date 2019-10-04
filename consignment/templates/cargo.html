@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/invoice.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <h1>Master Bill Of Ladding</h1>
-    <table class="table">
+    <p>
+    <button type="button" class="btn btn-primary js-create-invoice">
+      <span class="glyphicon glyphicon-plus"></span>
+      Create an Invoice
+    </button>
+  </p>
+    <table class="table" id="invoice-table">
   <thead>
     <tr>
       <th scope="col">Master Bill of Ladding No</th>
@@ -19,35 +30,13 @@
       <th scope="col">Measurement</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td scope="row">molu1800338210
-</td>
-      <td scope="col">Be Forward CO . Ltd
-</td>
-      <td scope="col">StanMore Holdings Ltd
-</td>
-      <td scope="col">Transfrieght Logistics
-</td>
-      <td scope="col">Marguerite Ace
-</td>
-      <td scope="col">0087A
-</td>
-      <td scope="col">YOKOHAMA
-</td>
-      <td scope="col">MOMBASA
-</td>
-      <td scope="col">REGIONAL LOGISTICS CENTER
-</td>
-      <td scope="col">3 UNITS
-</td>
-      <td scope="col">4980
-</td>
-      <td scope="col">42.588
-</td>
-    </tr>
-  </tbody>
+  <tbody>{% include 'partial_invoice_list.html' %}</tbody>
 </table>
 </div>
+<div class="modal fade" id="modal-invoice">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
 
 {% endblock %}
