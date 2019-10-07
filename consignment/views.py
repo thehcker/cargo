@@ -28,7 +28,7 @@ def invoice_create(request):
 			data['form_is_valid'] = False
 	else:
 		form = ShipmentForm()
-	data['html_form'] = render_to_string('partial_invoice.html', {'form': form}, request=request,)
+	data['html_form'] = render_to_string('partial_invoice.html', {'form': form}, request=request)
 	return JsonResponse(data)
 
 def extra(request):
