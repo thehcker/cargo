@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/extra.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Extra Bill Of Ladding</h1>
+    <p>
+    <button type="button" class="btn btn-primary js-create-extra" data-url="{% url 'extra_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Create Extra
+    </button>
+  </p>
+    
+    <table class="table table-stripped" id="invoice-table">
+  <thead>
+    <tr>
+      <th>FILE REF</th>
+      <th>House Bill of Ladding No Secondary</th>
+      <th>Consignee2</th>
+      <th>Qty</th>
+      <th>Vehicle Details</th>
+      <th>Weight</th>
+      <th>Measurement</th>
+      <th>CFS</th>
+      <th>DESTINATION</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+  	<tr>
+      <td>{{ extra.manifest.ref_no }}</td>
+      <td>{{ extra.housebl_no }}</td>
+      <td>{{ extra.consignee2 }}</td>
+      <td>{{ extra.quantity }}</td>
+      <td>{{ extra.vehicle_detail }}</td>
+      <td>{{ extra.weight }}</td>
+      <td>{{ extra.measurement }}</td>
+      <td>{{ extra.cfs }}</td>
+      <td>{{ extra.destination }}</td>
+      <td scope="col"><button type="button" class="btn btn-warning btn-sm js-update-extra" data-url="{% url 'extra_update' extra.id %}">
+        <span class="glyphicon glyphicon-pencil"></span>Edit</button>
+    </td>
+    <td>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-extra"
+              data-url="{% url 'extra_delete' extra.id %}" >
+            <span class="glyphicon glyphicon-trash"></span>Delete
+          </button>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+</div>
+<div class="modal fade" id="modal-extra">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

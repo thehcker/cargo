@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/extra.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Extra Bill Of Ladding</h1>
+    <p>
+    <button type="button" class="btn btn-primary js-create-extra" data-url="{% url 'extra_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Create Extra
+    </button>
+  </p>
+    
+    <table class="table table-stripped" id="extratable" id="invoice-table">
+  <thead>
+    <tr>
+      <th>FILE REF</th>
+      <th>House Bill of Ladding No Secondary</th>
+      <th>Consignee2</th>
+      <th>Qty</th>
+      <th>Vehicle Details</th>
+      <th>Weight</th>
+      <th>Measurement</th>
+      <th>CFS</th>
+      <th>DESTINATION</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+  	{% include "partial_extra_list.html" %}
+  </tbody>
+</table>
+</div>
+<div class="modal fade" id="modal-extra">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

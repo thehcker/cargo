@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/invoice.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Master Bill Of Ladding</h1>
+    <p>
+    <button type="button" class="btn btn-primary js-create-invoice" data-url="{% url 'invoice_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Create an Invoice
+    </button>
+  </p>
+    <table class="table table-stripped" id="invoice-table">
+  <thead>
+    <tr>
+      <th>Master Bill of Ladding No</th>
+      <th>Shipper Name</th>
+      <th>Consignee1</th>
+      <th>Notify party</th>
+      <th>Ocean Vesssel</th>
+      <th>Voyage No.</th>
+      <th>Port of Loading</th>
+      <th>Port of Discharge</th>
+      <th>Final Destination</th>
+      <th>No of packages/Description</th>
+      <th>Gross Weight</th>
+      <th>Measurement</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+      <td>{{ ship.ladding_no }}</td>
+      <td>{{ ship.shipper }}</a></td>
+      <td>{{ ship.consignee1 }}</td>
+      <td>{{ ship.notify_party }}</td>
+      <td>{{ ship.ocean_vessel }}</td>
+      <td>{{ ship.voyage_no }}</td>
+      <td>{{ ship.pol }}</td>
+      <td>{{ ship.pod }}</td>
+      <td>{{ ship.final_destination }}</td>
+      <td>{{ ship.description }}</td>
+      <td>{{ ship.gross_weight }}</td>
+      <td>{{ ship.measurement }}</td>
+      <td><button type="button" class="btn btn-warning btn-sm js-update-invoice" data-url="{% url 'invoice_update' ship.id %}">
+        <span class="glyphicon glyphicon-pencil"></span>Edit</button>
+    </td>
+    <td>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-invoice"
+              data-url="{% url 'invoice_delete' ship.id %}" >
+            <span class="glyphicon glyphicon-trash"></span>Delete
+          </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="modal fade" id="modal-invoice">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

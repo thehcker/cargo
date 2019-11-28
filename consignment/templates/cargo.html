@@ -8,29 +8,31 @@
 <div class="container">
     <h1>Master Bill Of Ladding</h1>
     <p>
-    <button type="button" class="btn btn-primary js-create-invoice">
+    <button type="button" class="btn btn-primary js-create-invoice" data-url="{% url 'invoice_create' %}">
       <span class="glyphicon glyphicon-plus"></span>
       Create an Invoice
     </button>
   </p>
-    <table class="table" id="invoice-table">
+    <table class="table table-stripped" id="mastertable" id="invoice-table">
   <thead>
     <tr>
-      <th scope="col">Master Bill of Ladding No</th>
-      <th scope="col">Shipper</th>
-      <th scope="col">Consignee1</th>
-      <th scope="col">Notify party</th>
-      <th scope="col">Ocean Vesssel</th>
-      <th scope="col">Voyage No.</th>
-      <th scope="col">Port of Loading</th>
-      <th scope="col">Port of Discharge</th>
-      <th scope="col">Final Destination</th>
-      <th scope="col">No of packages/Description</th>
-      <th scope="col">Gross Weight</th>
-      <th scope="col">Measurement</th>
+      <th>Master Bill of Ladding No</th>
+      <th>Shipper Name</th>
+      <th>Consignee1</th>
+      <th>Notify party</th>
+      <th>Ocean Vesssel</th>
+      <th>Voyage No.</th>
+      <th>Port of Loading</th>
+      <th>Port of Discharge</th>
+      <th>Final Destination</th>
+      <th>No of packages/Description</th>
+      <th>Gross Weight</th>
+      <th>Measurement</th>
     </tr>
   </thead>
-  <tbody>{% include 'partial_invoice_list.html' %}</tbody>
+  <tbody>
+     {% include "partial_invoice_list.html" %}
+  </tbody>
 </table>
 </div>
 <div class="modal fade" id="modal-invoice">
@@ -38,5 +40,6 @@
       <div class="modal-content">
       </div>
     </div>
+  </div>
 
 {% endblock %}

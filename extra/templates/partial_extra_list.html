@@ -1,0 +1,17 @@
+{% for extra in extras %}
+    <tr>
+      <td><a href="{% url 'extra_detail' extra.id %}">{{ extra.manifest.ref_no }}</a></td>
+      <td>{{ extra.housebl_no }}</td>
+      <td>{{ extra.consignee2 }}</td>
+      <td>{{ extra.quantity }}</td>
+      <td>{{ extra.vehicle_detail }}</td>
+      <td>{{ extra.weight }}</td>
+      <td>{{ extra.measurement }}</td>
+      <td>{{ extra.cfs }}</td>
+      <td>{{ extra.destination }}</td>
+    </tr>
+{% empty %}
+    <tr>
+    <td colspan="11">The table Extra is empty</td>
+	</tr>
+{% endfor %}

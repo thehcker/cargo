@@ -1,20 +1,21 @@
-{% for ship in shipment %}
+{% for ship in invoices %}
     <tr>
-      <td scope="row">{{ ship.ladding_no }}</td>
-      <td scope="col">{{ ship.shipper }}</td>
-      <td scope="col">{{ ship.consignee1 }}</td>
-      <td scope="col">{{ ship.notify_party }}</td>
-      <td scope="col">{{ ship.ocean_vessel }}</td>
-      <td scope="col">{{ ship.voyage_no }}</td>
-      <td scope="col">{{ ship.pol }}</td>
-      <td scope="col">{{ ship.pod }}</td>
-      <td scope="col">{{ ship.final_destination }}</td>
-      <td scope="col">{{ ship.description }}</td>
-      <td scope="col">{{ ship.gross_weight }}</td>
-      <td scope="col">{{ ship.measurement }}</td>
+      <td>{{ ship.ladding_no }}</td>
+      <td><a href="{% url 'cargo_detail' ship.id %}">{{ ship.shipper }}</a></td>
+      <td>{{ ship.consignee1 }}</td>
+      <td>{{ ship.notify_party }}</td>
+      <td>{{ ship.ocean_vessel }}</td>
+      <td>{{ ship.voyage_no }}</td>
+      <td>{{ ship.pol }}</td>
+      <td>{{ ship.pod }}</td>
+      <td>{{ ship.final_destination }}</td>
+      <td>{{ ship.description }}</td>
+      <td>{{ ship.gross_weight }}</td>
+      <td>{{ ship.measurement }}</td>
+
     </tr>
 {% empty %}
     <tr>
-      <td colspan="12"><h3>Sorry There is no consignment yet</h3></td>
-	</tr>
+      <td colspan="14">Sorry There is no consignment yet</td>
+	   </tr>
 {% endfor %}

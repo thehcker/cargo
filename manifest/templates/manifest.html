@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/hom.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>House of Manifest</h1>
+    <p>
+    <button type="button" class="btn btn-primary js-create-hom" data-url="{% url 'hom_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Create Manifest
+    </button>
+  </p>
+    <table class="table" id="manifesttable" id="invoice-table">
+  <thead>
+    <tr>
+      <th scope="col">Reference No</th>
+      <th scope="col">Date of Loading</th>
+      <th scope="col">Shipper Name</th>
+      <th scope="col">Shipper Address</th>
+      <th scope="col">Shipper City</th>
+      <th scope="col">Shipper Country</th>
+      <th scope="col">Shiper Tel</th>
+      <th scope="col">Shipper Email</th>
+      <th scope="col">VESSEL</th>
+      <th scope="col">Voyarge No</th>
+      <th scope="col">Port of Loading</th>
+      <th scope="col">CFS</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% include 'partial_hom_list.html' %}
+  </tbody>
+</table>
+</div>
+<div class="modal fade" id="modal-hom">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

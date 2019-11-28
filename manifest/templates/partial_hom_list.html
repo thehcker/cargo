@@ -1,0 +1,21 @@
+{% for manifest in manifests %}
+    <tr>
+      <td scope="col"><a href="{{ manifest.get_absolute_url }}">{{ manifest.ref_no }}</a></td>
+      <td scope="col">{{ manifest.date }}</td>
+      <td scope="col">{{ manifest.shipper_name }}</td>
+      <td scope="col">{{ manifest.shipper_address }}</td>
+      <td scope="col">{{ manifest.shipper_city }}</td>
+      <td scope="col">{{ manifest.shipper_country }}</td>
+      <td scope="col">{{ manifest.shipper_tel }}</td>
+      <td scope="col">{{ manifest.shipper_email }}</td>
+      <td scope="col">{{ manifest.vessel_name }}</td>
+      <td scope="col">{{ manifest.voyage_no }}</td>
+      <td scope="col">{{ manifest.port_of_loading }}</td>
+      <td scope="col">{{ manifest.cfs }}</td>
+      
+    </tr>
+{% empty %}
+<tr>
+	<td colspan="10">The table is empty</td>
+</tr>
+{% endfor %}
