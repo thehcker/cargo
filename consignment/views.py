@@ -3,10 +3,11 @@ from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 from consignment.form import ShipmentForm
 from . models import Shipment
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 
 # Create your views here.
-
+@login_required
 def cargo(request):
 	invoices = Shipment.objects.all()
 	template = 'cargo.html' #['cargo.html', 'cargo_list.html']

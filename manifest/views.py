@@ -2,11 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
 from .forms import ManifestForm
 from .models import Manifest
 
 # Create your views here.
-
+@login_required
 def manifest(request):
 	manifests = Manifest.objects.all()
 	context = {'manifests': manifests}

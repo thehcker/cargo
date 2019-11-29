@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from .models import Extra
 from .forms import ExtraForm
 
 # Create your views here.
+@login_required
 def extra(request):
 	extras = Extra.objects.all()
 	context = {'extras': extras}
