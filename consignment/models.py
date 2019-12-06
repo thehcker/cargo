@@ -62,7 +62,7 @@ class Shipment(models.Model):
 
 def pre_save_create_ladding_no(sender, instance, *args, **kwargs):
 	if not instance.ladding_no:
-		instance.ladding_no = unique_ladding_no_generator(instance)
+		instance.ladding_no = unique_ladding_no_generator(instance).upper()
 
 pre_save.connect(pre_save_create_ladding_no, sender=Shipment)
 		

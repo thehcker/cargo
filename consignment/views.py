@@ -41,7 +41,7 @@ def save_invoiceform(request, form, template_name):
 	return JsonResponse(data)
 
 def invoice_create(request):
-	if request.method == 'POST':
+	if request.method == "POST":
 		form = ShipmentForm(request.POST)
 	else:
 		form = ShipmentForm()

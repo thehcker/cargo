@@ -53,7 +53,7 @@ class Manifest(models.Model):
 
 def pre_save_create_ref_no(sender, instance, *args, **kwargs):
 	if not instance.ref_no:
-		instance.ref_no = unique_ref_no_generator(instance)
+		instance.ref_no = unique_ref_no_generator(instance).upper()
 pre_save.connect(pre_save_create_ref_no, sender=Manifest)
 
 def create_manifest(sender,instance,**kwargs):
