@@ -4,4 +4,4 @@ from .models import Extra
 class ExtraForm(forms.ModelForm):
 	class Meta:
 		model = Extra
-		fields = '__all__'
+		exclude = ['manifest', 'file_ref_no']

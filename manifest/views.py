@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.views.generic import DetailView
@@ -19,10 +19,12 @@ class ManifestDetailView(DetailView):
 	context_object_name = 'manifest'
 	template_name = 'manifest_detail.html'
 
-def save_extra(request, form, template_name):
+def save_manifest(request, form, template_name):
 	data = {}
 	if request.method == "POST":
 		if form.is_valid():
+			# manifest_obj, new_obj = Manifest.objects.new_or_get(request)
+			# form.instance.shipper = manifest_obj
 			form.save()
 			data["form_is_valid"] = True
 			manifests = Manifest.objects.all()
@@ -38,15 +40,16 @@ def create_hom(request):
 		form = ManifestForm(request.POST)
 	else:
 		form = ManifestForm()
-	return save_extra(request, form, "partial_hom_create.html")
+	return save_manifest(request, form, "partial_hom_create.html")
 
 def update_hom(request, pk):
 	manifest = get_object_or_404(Manifest, pk=pk)
 	if request.method == "POST":
 		form = ManifestForm(request.POST, instance=manifest)
+		success_url = 'hom/'
 	else:
 		form = ManifestForm(instance=manifest)
-	return save_extra(request, form, "partial_hom_update.html")
+	return save_manifest(request, form, "partial_hom_update.html")
 
 
 

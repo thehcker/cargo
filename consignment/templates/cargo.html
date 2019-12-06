@@ -7,7 +7,6 @@
 {% block content %}
 <div class="container">
     <h1>Master Bill Of Ladding</h1>
-    <p>
     <button type="button" class="btn btn-primary js-create-invoice" data-url="{% url 'invoice_create' %}">
       <span class="glyphicon glyphicon-plus"></span>
       Create an Invoice
@@ -36,7 +35,7 @@
 </table>
 </div>
 <div class="modal fade" id="modal-invoice">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
       </div>
     </div>

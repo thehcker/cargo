@@ -2,9 +2,25 @@ import random
 from django.shortcuts import reverse
 from django.db import models
 from consignment.models import Shipment
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from Luqman.utils import unique_ref_no_generator
 
+class ManifestManager(models.Manager):
+	def new_or_get(self, request):
+		manifest_id = request.session.get('manifest_id')
+		qs = Manifest.objects.filter(id=manifest_id)
+		manifest_obj = None
+		shipment_obj = None
+		if qs.count() == 1:
+			new_obj = False
+			manifest_obj = qs.first()
+			manifest_obj.save()
+		elif shipment_obj is not None:
+			shipment_id = Shipment.objects.get(shipment_obj.id)
+			manifest_obj = Manifest.objects.create(id=shipment_id)
+			new_obj = True
+		return manifest_obj
+	
 # Create your models here.
 class Manifest(models.Model):
 	shipper = models.OneToOneField(Shipment, on_delete=models.CASCADE)
@@ -20,6 +36,8 @@ class Manifest(models.Model):
 	voyage_no = models.CharField(max_length=100)
 	port_of_loading = models.CharField(max_length=100)
 	cfs = models.CharField(max_length=100)
+
+	# objects = ManifestManager()
 
 	def __str__(self):
 		return self.shipper_name
@@ -38,3 +56,7 @@ def pre_save_create_ref_no(sender, instance, *args, **kwargs):
 		instance.ref_no = unique_ref_no_generator(instance)
 pre_save.connect(pre_save_create_ref_no, sender=Manifest)
 
+def create_manifest(sender,instance,**kwargs):
+	manifest,new = Manifest.objects.get_or_create(shipper=instance)
+ 
+post_save.connect(create_manifest,sender=Shipment)

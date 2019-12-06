@@ -1,6 +1,6 @@
 from django.db import models
 from manifest.models import Manifest
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from Luqman.utils import unique_ref_no_generator
 
 # Create your models here.
@@ -9,10 +9,10 @@ class Extra(models.Model):
 	file_ref_no = models.CharField(max_length=120, blank=True)
 	housebl_no = models.CharField(max_length=120)
 	consignee2 = models.CharField(max_length=120)
-	quantity = models.IntegerField()
+	quantity = models.IntegerField(default=1)
 	vehicle_detail = models.TextField(max_length=200)
-	weight = models.DecimalField(decimal_places=2, max_digits=20)
-	measurement = models.DecimalField(decimal_places=2, max_digits=20)
+	weight = models.DecimalField(decimal_places=2, max_digits=20, default=5.00)
+	measurement = models.DecimalField(decimal_places=2, max_digits=20, default=5.00)
 	cfs = models.CharField(max_length=120)
 	destination = models.CharField(max_length=120)
 
@@ -33,3 +33,7 @@ class Extra(models.Model):
 # 		instance.ref_no = unique_ref_no_generator(instance)
 # pre_save.connect(pre_save_create_file_ref_no, sender=Extra)
 
+def create_extra(sender,instance,**kwargs):
+	extra,new = Extra.objects.get_or_create(manifest=instance)
+ 
+post_save.connect(create_extra,sender=Manifest)

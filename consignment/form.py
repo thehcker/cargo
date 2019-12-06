@@ -5,4 +5,4 @@ class ShipmentForm(forms.ModelForm):
 	class Meta:
 		model = Shipment
 
-		fields = '__all__'
+		exclude = ['author', 'ladding_no']

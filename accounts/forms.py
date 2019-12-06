@@ -1,7 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import transaction
 from django import forms
+
+User = get_user_model()
 
 class SignUpForm(UserCreationForm):
 	class Meta(UserCreationForm.Meta):

@@ -5,6 +5,9 @@ from consignment.form import ShipmentForm
 from . models import Shipment
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
+from decorators import superuser_required
+
 
 # Create your views here.
 @login_required
@@ -26,6 +29,7 @@ def save_invoiceform(request, form, template_name):
 	data = {}
 	if request.method == 'POST':
 		if form.is_valid():
+			form.instance.author = request.user
 			form.save()
 			data["form_is_valid"] = True
 			invoices = Shipment.objects.all()
